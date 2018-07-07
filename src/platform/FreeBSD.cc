@@ -179,7 +179,6 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 			++i;
 		}
 
-		if( strcmp(argv[0], "telnet") == 0 ) {
 
 		for (i=1; i <= argc; i++) {
 		//Try to preopen all the arguments given.
@@ -229,7 +228,6 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 
 				++i;
 			}
-		}
 
 	return CommandLine(File(FileDescriptor::TakeOwnership(binary)), args);
 }
