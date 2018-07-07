@@ -176,7 +176,6 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 			{
 				po_preopen(map, path, O_RDONLY);
 			}
-			++i;
 		}
 
 		int j=1;
@@ -224,8 +223,6 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 				po_add(map, path, client_socket, PREOP_SOCKET);
 
 				}
-
-				++j;
 			}
 
 	return CommandLine(File(FileDescriptor::TakeOwnership(binary)), args);
