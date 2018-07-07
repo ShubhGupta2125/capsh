@@ -179,11 +179,10 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 			++i;
 		}
 
+		int j=1;
+		for (j=1; j <= argc; j++) {
 
-		for (i=1; i <= argc; i++) {
-		//Try to preopen all the arguments given.
-
-			path = argv[i];
+			path = argv[j];
 			if (path == NULL || strcmp(path, "-") == 0) 
 			{
 				++i;				
@@ -226,7 +225,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 
 				}
 
-				++i;
+				++j;
 			}
 
 	return CommandLine(File(FileDescriptor::TakeOwnership(binary)), args);
