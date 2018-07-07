@@ -194,7 +194,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 			{
 
 				char *server_name;
-				char port[15] = "23";
+				char port[15];
 
 
 				server_name = path;
