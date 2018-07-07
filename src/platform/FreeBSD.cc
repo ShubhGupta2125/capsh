@@ -179,7 +179,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 			++i;
 		}
 
-		if( strcmp(argv[1], "telnet") == 0 ) {
+		if( strcmp(argv[0], "telnet") == 0 ) {
 
 		for (i=1; i <= argc; i++) {
 		//Try to preopen all the arguments given.
