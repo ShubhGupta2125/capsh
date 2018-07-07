@@ -194,8 +194,6 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 			{
 
 				char *server_name;
-				char port[15];
-
 
 				server_name = path;
 				
@@ -207,8 +205,8 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 				memset(&hints, 0, sizeof(hints));
 				hints.ai_family = AF_UNSPEC;
 				hints.ai_socktype = SOCK_STREAM;
-				if ((rv = getaddrinfo(server_name, port, &hints, &servinfo)) != 0) {
-				    fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
+				if ((rv = getaddrinfo(server_name, NULL, &hints, &servinfo)) != 0) {
+				    fpritnf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 				    exit(1);
 				}
 
