@@ -198,7 +198,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 
 
 				server_name = path;
-				if( argv[2]!=NULL ) strcpy(port, argv[2]);
+				if( argv[2]!=NULL ) port = strdup(argv[2]);
 
 				// Connect to the server
 				int client_socket = 0;
