@@ -223,7 +223,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 				        continue;
 				    }
 
-				    // Connected succesfully!
+				    break;
 				}
 
 				po_add(map, path, client_socket, PREOP_SOCKET);
