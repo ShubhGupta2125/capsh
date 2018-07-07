@@ -41,6 +41,9 @@
 #include <stdlib.h>
 #include <string>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
 
 using namespace capsh;
 using std::string;
@@ -157,8 +160,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 		throw PosixError("unable to open executable '" + args[0] + "'");
 
 		char *path;
-		int i=1;
-		
+		int i=1;		
 		//TODO: Make a policy file for each application and prevent the blind opening of all arguments for applications like echo
 
 		for (i=1; i <= argc; i++) {
@@ -175,6 +177,61 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 				po_preopen(map, path, O_RDONLY);
 			}
 			++i;
+		}
+
+		if( strcmp(argv[1], "telnet") == 0 ) {
+
+		for (i=1; i <= argc; i++) {
+		//Try to preopen all the arguments given.
+
+			path = argv[i];
+			if (path == NULL || strcmp(path, "-") == 0) 
+			{
+				++i;				
+				continue;
+			}
+			else 
+			{
+
+				char *server_name = NULL;
+				char port[15] = "23";
+
+
+				server_name = path;
+				if( argv[2]!=NULL ) strcpy(port, argv[2]);
+
+				// Connect to the server
+				int client_socket = 0;
+				struct addrinfo hints, *servinfo, *p;
+				int rv;
+
+				memset(&hints, 0, sizeof(hints));
+				hints.ai_family = AF_UNSPEC;
+				hints.ai_socktype = SOCK_STREAM;
+				if ((rv = getaddrinfo(server_name, port, &hints, &servinfo)) != 0) {
+				    fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
+				    exit(1);
+				}
+
+				for (p=servinfo; p != NULL; p = p->ai_next) {
+				    if ((client_socket = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) == -1) {
+				        continue;
+				    }
+
+				    if (connect(client_socket, p->ai_addr, p->ai_addrlen) == -1) {
+				        close(client_socket);
+				        continue;
+				    }
+
+				    // Connected succesfully!
+				}
+
+				po_add(map, path, client_socket, PREOP_SOCKET);
+
+				}
+
+				++i;
+			}
 		}
 
 	return CommandLine(File(FileDescriptor::TakeOwnership(binary)), args);
