@@ -206,7 +206,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 				hints.ai_family = AF_UNSPEC;
 				hints.ai_socktype = SOCK_STREAM;
 				if ((rv = getaddrinfo(server_name, NULL, &hints, &servinfo)) != 0) {
-				    fpritnf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
+				    fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 				    exit(1);
 				}
 
