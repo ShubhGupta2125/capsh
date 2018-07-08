@@ -191,7 +191,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 			{
 				
 				// Connect to the server
-				int client_socket = 0;
+				int client_socket = -1;
 				struct addrinfo hints, *servinfo, *p;
 				int rv;
 
@@ -214,7 +214,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 
 				    break;
 				}
-
+				if(client_socket != -1)
 				po_add(map, path, client_socket, PREOP_SOCKET);
 
 				}
