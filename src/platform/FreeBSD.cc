@@ -177,22 +177,18 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 				po_preopen(map, path, O_RDONLY);
 			}
 		}
-/*
+
 		int j=1;
 		for (j=1; j <= argc; j++) {
 
 			path = argv[j];
-			if (path == NULL || strcmp(path, "-") == 0) 
+			if (path == NULL || *path == '-') 
 			{
 				++i;				
 				continue;
 			}
 			else 
 			{
-
-				char *server_name;
-
-				server_name = path;
 				
 				// Connect to the server
 				int client_socket = 0;
@@ -202,7 +198,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 				memset(&hints, 0, sizeof(hints));
 				hints.ai_family = AF_UNSPEC;
 				hints.ai_socktype = SOCK_STREAM;
-				if ((rv = getaddrinfo(server_name, NULL, &hints, &servinfo)) != 0) {
+				if ((rv = getaddrinfo(path, NULL, &hints, &servinfo)) != 0) {
 				    fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 				    exit(1);
 				}
@@ -213,7 +209,6 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 				    }
 
 				    if (connect(client_socket, p->ai_addr, p->ai_addrlen) == -1) {
-				        close(client_socket);
 				        continue;
 				    }
 
@@ -224,7 +219,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 
 				}
 			}
-*/
+
 	return CommandLine(File(FileDescriptor::TakeOwnership(binary)), args);
 }
 
