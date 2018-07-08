@@ -195,9 +195,9 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 				struct addrinfo hints, *servinfo, *p;
 				int rv;
 
-				memset(&hints, 0, sizeof(hints));
+/*				memset(&hints, 0, sizeof(hints));
 				hints.ai_family = AF_UNSPEC;
-				hints.ai_socktype = SOCK_STREAM;
+				hints.ai_socktype = SOCK_STREAM;*/
 				if ((rv = getaddrinfo(path, NULL, &hints, &servinfo)) != 0) {
 				    fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 				    exit(1);
@@ -208,10 +208,8 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 				        continue;
 				    }
 
-				    if (connect(client_socket, p->ai_addr, p->ai_addrlen) == -1) {
+				    if (connect(client_socket, p->ai_addr, p->ai_addrlen) == -1) 
 				        continue;
-				    }
-
 				    break;
 				}
 				if(client_socket != -1)
