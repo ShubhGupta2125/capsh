@@ -178,7 +178,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 			}
 		}
 
-/*		int j=1;
+		int j=1;
 		for (j=1; j <= argc; j++) {
 
 			path = argv[j];
@@ -195,13 +195,16 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 				struct addrinfo hints, *servinfo, *p;
 				int rv;
 
-/*				memset(&hints, 0, sizeof(hints));
+				memset(&hints, 0, sizeof(hints));
 				hints.ai_family = AF_UNSPEC;
-				hints.ai_socktype = SOCK_STREAM;*/
-/*				if ((rv = getaddrinfo(path, NULL, &hints, &servinfo)) != 0) {
+				hints.ai_socktype = SOCK_STREAM;
+				if ((rv = getaddrinfo(path, NULL, &hints, &servinfo)) != 0) {
 				    fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 				    exit(1);
 				}
+				for (p=servinfo; p != NULL; p = p->ai_next) {
+				    printf("The family is %d", (p->ai_family));
+				    }
 
 				for (p=servinfo; p != NULL; p = p->ai_next) {
 				    if ((client_socket = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) == -1) {
@@ -217,7 +220,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 
 				}
 			}
-*/
+
 	return CommandLine(File(FileDescriptor::TakeOwnership(binary)), args);
 }
 
