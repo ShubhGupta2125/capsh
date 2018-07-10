@@ -198,13 +198,10 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 				memset(&hints, 0, sizeof(hints));
 				hints.ai_family = AF_UNSPEC;
 				hints.ai_socktype = SOCK_STREAM;
-				if ((rv = getaddrinfo("localhost", "http", &hints, &servinfo)) != 0) {
+				if ((rv = getaddrinfo(path, NULL, &hints, &servinfo)) != 0) {
 				    fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 				    exit(1);
 				}
-				for (p=servinfo; p != NULL; p = p->ai_next) {
-				    printf("The family is %d", (p->ai_family));
-				    }
 
 				for (p=servinfo; p != NULL; p = p->ai_next) {
 				    if ((client_socket = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) == -1) {
