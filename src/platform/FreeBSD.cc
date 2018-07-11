@@ -253,7 +253,7 @@ void FreeBSD::Execute(const CommandLine& c) const
 	}
 
 	setenv("LD_LIBRARY_PATH_FDS", libs.c_str(), 1);
-
+/*
 	for(size_t i = 0; i < map->length; i++) 
 		{
 
@@ -262,7 +262,7 @@ void FreeBSD::Execute(const CommandLine& c) const
 		printf("The FD is %d", entry->fd);
 		printf("The flag is %d", entry->flag);
 		printf("The name is %s", entry->name);
-	}
+	}*/
 
 	int shmfd = po_pack(map);
 
