@@ -187,10 +187,11 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 			}
 			else 
 			{
-				if(argv[0] == "telnet"){
-					char port[15]="23";
+				char port[15]="23";
+				if(strcmp(argv[0], "telnet") == 0){
+
 					if(argv[2]!=NULL)
-						strcpy(argv[2], port, strlen(argv[2]));
+						strncpy(argv[2], port, strlen(argv[2]));
 				}
 				
 				// Connect to the server
