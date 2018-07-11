@@ -217,7 +217,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 			}
 
 	return CommandLine(File(FileDescriptor::TakeOwnership(binary)), args);
-}
+}1
 
 
 void FreeBSD::Execute(const CommandLine& c) const
@@ -253,6 +253,16 @@ void FreeBSD::Execute(const CommandLine& c) const
 	}
 
 	setenv("LD_LIBRARY_PATH_FDS", libs.c_str(), 1);
+
+	for(size_t i = 0; i < map->length; i++) 
+		{
+
+		const struct po_map_entry *entry = map->entries + i;
+		
+		printf("The FD is %d", entry->fd);
+		printf("The flag is %d", entry->flag);
+		printf("The name is %s", entry->name);
+	}
 
 	int shmfd = po_pack(map);
 
