@@ -50,8 +50,8 @@ File Capsicum::Open(std::string path, bool writable) const
 
 bool Capsicum::EnterSandbox() const
 {
-	if (cap_enter() != 0)
-		throw PosixError("failed to enter Capsicum capability mode");
+/*	if (cap_enter() != 0)
+		throw PosixError("failed to enter Capsicum capability mode");*/
 
 	return true;
 }
