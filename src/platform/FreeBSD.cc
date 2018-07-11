@@ -191,7 +191,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 				if(strcmp(argv[0], "telnet") == 0){
 
 					if(argv[2]!=NULL)
-						strncpy(argv[2], port, strlen(argv[2]));
+						strncpy(port, argv[2], strlen(argv[2]));
 				}
 				
 				// Connect to the server
