@@ -267,7 +267,7 @@ void FreeBSD::Execute(const CommandLine& c) const
     //setting the close-on-exec flag to 0
     fcntl(shmfd, F_SETFD, 0);
     
-    setenv("LD_PRELOAD", std::string("libpreopen.so:libpowrappers.so").c_str() ,1);
+    setenv("LD_PRELOAD", std::string("libpreopen.so libpowrappers.so").c_str() ,1);
            
 	// And... go!
 	fexecve(linker.borrow(), argv.data(), environ);
