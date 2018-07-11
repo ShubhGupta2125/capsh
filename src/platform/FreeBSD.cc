@@ -169,7 +169,6 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 			path = argv[i];
 			if (path == NULL || strcmp(path, "-") == 0) 
 			{
-				++i;				
 				continue;
 			}
 			else 
