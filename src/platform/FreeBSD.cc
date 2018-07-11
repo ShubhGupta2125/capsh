@@ -217,7 +217,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 			}
 
 	return CommandLine(File(FileDescriptor::TakeOwnership(binary)), args);
-}1
+}
 
 
 void FreeBSD::Execute(const CommandLine& c) const
