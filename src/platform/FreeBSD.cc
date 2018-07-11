@@ -187,6 +187,11 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 			}
 			else 
 			{
+				if(argv[0] == "telnet"){
+					char port[15]="23";
+					if(argv[2]!=NULL)
+						strcpy(argv[2], port, strlen(argv[2]));
+				}
 				
 				// Connect to the server
 				int client_socket = -1;
@@ -196,7 +201,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 				memset(&hints, 0, sizeof(hints));
 				hints.ai_family = AF_UNSPEC;
 				hints.ai_socktype = SOCK_STREAM;
-				if ((rv = getaddrinfo(path, NULL, &hints, &servinfo)) != 0) {
+				if ((rv = getaddrinfo(path, port, &hints, &servinfo)) != 0) {
 				    fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
 				    exit(1);
 				}
