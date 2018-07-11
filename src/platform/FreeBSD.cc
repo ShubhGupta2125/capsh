@@ -178,7 +178,7 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 			}
 		}
 
-		int j=1;
+/*		int j=1;
 		for (j=1; j <= argc; j++) {
 
 			path = argv[j];
@@ -214,8 +214,8 @@ CommandLine FreeBSD::ParseArgs(int argc, char *argv[]) const
 				if(client_socket != -1)
 				po_add(map, path, client_socket, PREOP_SOCKET);
 
-				}
-			}
+				}*/
+//			}
 
 	return CommandLine(File(FileDescriptor::TakeOwnership(binary)), args);
 }
