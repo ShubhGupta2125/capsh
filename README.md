@@ -34,5 +34,29 @@ The deliverables that I was able to cope up with were
 
 7. All applications that need just a preopened file to enter a sandbox can now work successfully using capsh. A curated list of all these applications is under the work right now, and will be formulated here soon.
 
+8. Everything was tested using ```ktrace``` to check for the desired pattern of system calls. Moreover ```time``` was used to test the increased appication work time because of the addition of security principles while running an application with capsh
+
+# Running ```cat``` with capsh
+
+```bash
+mkdir build
+cd build
+cmake -G Ninja ..
+ninja
+cd src
+./capsh cat /etc/passwd
+```
+
+# Running ```file``` with capsh
+
+```bash
+mkdir build
+cd build
+cmake -G Ninja ..
+ninja
+cd src
+./capsh file /etc/passwd
+```
+
 
 
