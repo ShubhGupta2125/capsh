@@ -39,23 +39,23 @@ The deliverables that I was able to cope up with were
 ### Running ```cat``` with capsh
 
 ```bash
-mkdir build
-cd build
-cmake -G Ninja ..
-ninja
-cd src
-./capsh cat /etc/passwd
+$ mkdir build
+$ cd build
+$ cmake -G Ninja ..
+$ ninja
+$ cd src
+$ ./capsh cat /etc/passwd
 ```
 
 ### Running ```file``` with capsh
 
 ```bash
-mkdir build
-cd build
-cmake -G Ninja ..
-ninja
-cd src
-./capsh file /etc/passwd
+$ mkdir build
+$ cd build
+$ cmake -G Ninja ..
+$ ninja
+$ cd src
+$ ./capsh file /etc/passwd
 ```
 
 
