@@ -36,7 +36,7 @@ The deliverables that I was able to cope up with were
 
 8. Everything was tested using ```ktrace``` to check for the desired pattern of system calls. Moreover ```time``` was used to test the increased appication work time because of the addition of security principles while running an application with capsh
 
-# Running ```cat``` with capsh
+### Running ```cat``` with capsh
 
 ```bash
 mkdir build
@@ -47,7 +47,7 @@ cd src
 ./capsh cat /etc/passwd
 ```
 
-# Running ```file``` with capsh
+### Running ```file``` with capsh
 
 ```bash
 mkdir build
